@@ -1,0 +1,2 @@
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", ATTRS{serial}=="MODES", SYMLINK+="rtl-sdr-modes"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", ATTRS{serial}=="VDL2", SYMLINK+="rtl-sdr-vdl2"
