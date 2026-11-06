@@ -188,7 +188,7 @@ docker build -t dump1090-fa .
 
 ## 💻 运行方式
 
-```
+
 
 ### 使用 Docker Compose 运行
 
