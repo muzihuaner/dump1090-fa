@@ -188,8 +188,6 @@ docker build -t dump1090-fa .
 
 ## 💻 运行方式
 
-
-
 ### 使用 Docker Compose 运行
 
 编辑 `docker-compose.yml`，填入接收机的经纬度：
