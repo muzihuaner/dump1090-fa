@@ -200,6 +200,13 @@ docker run -d \
   -p 30003:30003 \
   dump1090-fa
 
+# 指定接收机序列号（可选，默认自动选择第一个设备）
+docker run --rm -it \
+  --device=/dev/bus/usb \
+  -p 8080:8080 \
+  -e DEVICE_SERIAL=00000001 \
+  dump1090-fa
+
 # 访问 Web UI
 open http://localhost:8080
 ```
@@ -274,6 +281,7 @@ EOF
 - 📊 **统计输出**：每 60 秒更新一次统计信息
 - 🌐 **网络功能**：启用
 - 📁 **JSON 输出**：输出到 `/run/dump1090` 目录
+- 📻 **设备选择**：通过环境变量 `DEVICE_SERIAL` 指定 RTL-SDR 序列号；未设置时自动使用第一个可用设备
 
 ## 📊 CI/CD
 
