@@ -1,0 +1,21 @@
+services:
+  dump1090-fa:
+    build: .
+    image: dump1090-fa
+    container_name: dump1090-fa
+
+    restart: unless-stopped
+
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+
+    ports:
+      - "8080:8080"
+      - "30001:30001"
+      - "30002:30002"
+      - "30003:30003"
+
+    environment:
+      RECEIVER_LON: "your longitude"
+      RECEIVER_LAT: "your latitude"
+      RECEIVER: "rtlsdr"

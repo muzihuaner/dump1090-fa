@@ -17,7 +17,7 @@
   - [1. 克隆仓库](#1-克隆仓库)
   - [2. 构建 Docker 镜像](#2-构建-docker-镜像)
 - [💻 运行方式](#-运行方式)
-  - [使用 Docker 运行](#使用-docker-运行)
+  - [使用 Docker Compose 运行](#使用-docker-compose-运行)
   - [使用 Kubernetes 运行](#使用-kubernetes-运行)
 - [🔧 配置](#-配置)
   - [Nginx 配置](#nginx-配置)
@@ -188,27 +188,38 @@ docker build -t dump1090-fa .
 
 ## 💻 运行方式
 
-### 使用 Docker 运行
-
-```bash
-# 基本运行（需要连接 RTL-SDR 设备）
-docker run -d \
-  --device=/dev/bus/usb \
-  -p 8080:8080 \
-  -p 30001:30001 \
-  -p 30002:30002 \
-  -p 30003:30003 \
-  dump1090-fa
-
-# 指定接收机序列号（可选，默认自动选择第一个设备）
-docker run --rm -it \
-  --device=/dev/bus/usb \
-  -p 8080:8080 \
-  -e DEVICE_SERIAL=00000001 \
-  dump1090-fa
 
 # 访问 Web UI
 open http://localhost:8080
+```
+
+### 使用 Docker Compose 运行
+
+编辑 `docker-compose.yml`，填入接收机的经纬度：
+
+```yaml
+environment:
+  RECEIVER_LON: "your longitude"
+  RECEIVER_LAT: "your latitude"
+  RECEIVER: "rtlsdr"
+```
+
+然后构建并启动：
+
+```bash
+docker compose up -d --build
+```
+
+查看日志：
+
+```bash
+docker compose logs -f
+```
+
+停止并删除容器：
+
+```bash
+docker compose down
 ```
 
 ### 使用 Kubernetes 运行
@@ -282,6 +293,8 @@ EOF
 - 🌐 **网络功能**：启用
 - 📁 **JSON 输出**：输出到 `/run/dump1090` 目录
 - 📻 **设备选择**：通过环境变量 `DEVICE_SERIAL` 指定 RTL-SDR 序列号；未设置时自动使用第一个可用设备
+- 📍 **接收机位置**：通过 `RECEIVER_LAT` / `RECEIVER_LON` 设置接收机经纬度
+- 📡 **接收机类型**：通过 `RECEIVER` 指定，当前仅支持 `rtlsdr`
 
 ## 📊 CI/CD
 
