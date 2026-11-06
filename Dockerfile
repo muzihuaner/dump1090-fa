@@ -10,7 +10,7 @@ RUN --mount=type=cache,target=/var/lib/apt,sharing=locked \
     debhelper \
     pkg-config \
     librtlsdr-dev \
-    libncurses-dev 
+    libncurses-dev
 
 RUN git clone https://github.com/flightaware/dump1090.git -b v9.0
 
