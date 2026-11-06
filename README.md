@@ -188,9 +188,6 @@ docker build -t dump1090-fa .
 
 ## 💻 运行方式
 
-
-# 访问 Web UI
-open http://localhost:8080
 ```
 
 ### 使用 Docker Compose 运行
@@ -210,17 +207,8 @@ environment:
 docker compose up -d --build
 ```
 
-查看日志：
-
-```bash
-docker compose logs -f
-```
-
-停止并删除容器：
-
-```bash
-docker compose down
-```
+# 访问 Web UI
+open http://localhost:8080
 
 ### 使用 Kubernetes 运行
 
