@@ -42,6 +42,8 @@ COPY --from=builder dump1090 /opt/dump1090
 COPY conf/nginx.conf /opt/dump1090
 COPY entrypoint.sh /opt/dump1090
 
+RUN chmod +x /opt/dump1090/entrypoint.sh
+
 RUN echo '{"type": "dump1090-fa"}' > /opt/dump1090/public_html/status.json
 
 EXPOSE 8080 30001 30002 30003
